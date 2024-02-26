@@ -2,18 +2,18 @@ import pandas as pd
 import geopandas as gpd
 
 def get_data(data_type):
-    grid = gpd.read_file(r'.\apps\business_expansion\data\hex.geojson')
-    admin = gpd.read_parquet(r'.\apps\business_expansion\data\admin.parquet')
+    grid = gpd.read_file(r'./apps/business_expansion/data/hex.geojson')
+    admin = gpd.read_parquet(r'./apps/business_expansion/data/admin.parquet')
     if data_type == 'Population with Hex':
-        data = pd.read_parquet(r'.\apps\business_expansion\data\hex_w_pop.parquet')
+        data = pd.read_parquet(r'./apps/business_expansion/data/hex_w_pop.parquet')
     elif data_type == 'Population in Admin':
-        data = gpd.read_parquet(r'.\apps\business_expansion\data\admin_w_pop.parquet') #.drop(columns = 'geometry')
+        data = gpd.read_parquet(r'./apps/business_expansion/data/admin_w_pop.parquet') #.drop(columns = 'geometry')
     elif data_type == 'POI in Hex':
-        data = pd.read_parquet(r'.\apps\business_expansion\data\hex_w_poi.parquet')
+        data = pd.read_parquet(r'./apps/business_expansion/data/hex_w_poi.parquet')
     elif data_type == 'Building in Hex':
-        data = pd.read_parquet(r'.\apps\business_expansion\data\hex_w_building.parquet')
+        data = pd.read_parquet(r'./apps/business_expansion/data/hex_w_building.parquet')
     elif data_type == 'POI by Category':
-        data = gpd.read_parquet(r'.\apps\business_expansion\data\poi_all.parquet')
+        data = gpd.read_parquet(r'./apps/business_expansion/data/poi_all.parquet')
     
     if data_type == 'Population in Admin':
         df = data.copy()#pd.merge(admin, data, on = 'nama_kecamatan')
@@ -24,7 +24,7 @@ def get_data(data_type):
     return data, df
 
 def get_map(df, data_type, classify=None):
-    admin = gpd.read_parquet(r'.\apps\business_expansion\data\admin.parquet')
+    admin = gpd.read_parquet(r'./apps/business_expansion/data/admin.parquet')
     if  data_type == 'Building in Hex':
         maps = df.explore(column = 'total building',
                     cmap = 'GnBu',

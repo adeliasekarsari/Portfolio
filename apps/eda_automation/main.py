@@ -142,12 +142,13 @@ class EdaApp(HydraHeadApp):
                                 
                     else:
                         st.dataframe(dataframe.head(10))
-                    
+                    # get unique values in column
+                    column_unique = dataframe.columns.tolist()
+
                     # get numeric column
                     column_numeric = module_analyze.getNumeric(dataframe)
 
-                    # get unique values in column
-                    column_unique = module_analyze.getObject(dataframe)
+                    
 
                     # create selectbox y and x var
                     with st.container():

@@ -19,7 +19,7 @@ class HomeApp(HydraHeadApp):
     #This one method that must be implemented in order to be used in a Hydralit application.
     #The application must also inherit from the hydrapp class in order to correctly work within Hydralit.
     def run(self):
-        image1 = Image.open(r"image4.jpg")
+        image1 = Image.open(r"./style/image/image4.jpg")
         image2 = Image.open(r"./style/image/image2.jpg")
         image3 = Image.open(r"./style/image/image3.jpg")
         st.markdown("""

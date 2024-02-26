@@ -18,7 +18,7 @@ class AboutMe(HydraHeadApp):
         with col1:
 
             # CSS styles file
-            with open(".\style\main.css") as f:
+            with open("./style/main.css") as f:
                 st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
             # Profile image file

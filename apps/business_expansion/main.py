@@ -129,17 +129,17 @@ class BEApp(HydraHeadApp):
 
             """
             st.markdown(f"<p class='medium-font'>{text}", unsafe_allow_html=True)
-            catchment = gpd.read_parquet(r'.\apps\business_expansion\data\catchment_mall.parquet')
-            poi = gpd.read_parquet(r'.\apps\business_expansion\data\point_mall.parquet')
+            catchment = gpd.read_parquet(r'./apps\business_expansion/data/catchment_mall.parquet')
+            poi = gpd.read_parquet(r'./apps/business_expansion/data/point_mall.parquet')
 
             # Catchment data
-            building_catch = pd.read_parquet(r'.\apps\business_expansion\data\data_catchment\building_catchment.parquet')
-            poi_catch = pd.read_parquet(r'.\apps\business_expansion\data\data_catchment\poi_catchment.parquet')
-            pop_catch = pd.read_parquet(r'.\apps\business_expansion\data\data_catchment\pop_catchment.parquet')
+            building_catch = pd.read_parquet(r'./apps\business_expansion/data/data_catchment/building_catchment.parquet')
+            poi_catch = pd.read_parquet(r'./apps/business_expansion/data\data_catchment/poi_catchment.parquet')
+            pop_catch = pd.read_parquet(r'./apps/business_expansion/data/data_catchment/pop_catchment.parquet')
             poi_category = get_data('POI in Hex')[0]
 
             # hex data
-            hex_ = gpd.read_parquet(r'.\apps\business_expansion\data\hex.parquet')
+            hex_ = gpd.read_parquet(r'./apps/business_expansion/data/hex.parquet')
             method = st.selectbox('Anaysis :',('Data','Huff Analysis'))
             col1, col2 = st.columns([0.6,0.4])
             with col1:
@@ -247,7 +247,7 @@ class BEApp(HydraHeadApp):
                         'The Kings Shopping Center': 'BuGn',
                         'Paris Van Java Supermall': 'YlOrBr',
                         'Click Square': 'PuBuGn'}
-                huff = pd.read_parquet(r'.\apps\business_expansion\data\huff\huff_{}.parquet'.format(distance)).rename(columns = {'id':'index'})
+                huff = pd.read_parquet(r'./apps/business_expansion/data/huff/huff_{}.parquet'.format(distance)).rename(columns = {'id':'index'})
                 with st.container():
 
                     df_huff = pd.merge(hex_, 
@@ -412,10 +412,10 @@ class BEApp(HydraHeadApp):
                                 }
                                 </style>
                                 """, unsafe_allow_html=True)
-            grid1 = pd.read_parquet(r'.\apps\business_expansion\data\poi_grid.parquet')
-            grid2 = pd.read_parquet(r'.\apps\business_expansion\data\griana_data.parquet')
+            grid1 = pd.read_parquet(r'./apps/business_expansion/data/poi_grid.parquet')
+            grid2 = pd.read_parquet(r'./apps/business_expansion/data/griana_data.parquet')
             df_plot = pd.merge(grid1, grid2, on = 'index').drop(columns = 'geometry')
-            grid = gpd.read_file(r'.\apps\business_expansion\data\hex.geojson')
+            grid = gpd.read_file(r'./apps/business_expansion/data/hex.geojson')
             with st.container():
                 col1, col2 = st.columns([0.35,0.65])
                 with col1:
