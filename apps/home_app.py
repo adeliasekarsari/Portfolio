@@ -5,6 +5,8 @@ from PIL import Image
 
 MENU_LAYOUT = [1,1,1,7,2]
 
+vDrive = os.path.splitdrive(os.getcwd())[0]
+
 
 class HomeApp(HydraHeadApp):
 
@@ -18,8 +20,8 @@ class HomeApp(HydraHeadApp):
     #The application must also inherit from the hydrapp class in order to correctly work within Hydralit.
     def run(self):
         image1 = Image.open(r"image4.jpg")
-        image2 = Image.open(r".\style\image\image2.jpg")
-        image3 = Image.open(r".\style\image\image3.jpg")
+        image2 = Image.open(r"./style/image/image2.jpg")
+        image3 = Image.open(r"./style/image/image3.jpg")
         st.markdown("""
         <style>
         .big-font {
