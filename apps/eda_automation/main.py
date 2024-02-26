@@ -71,9 +71,9 @@ class EdaApp(HydraHeadApp):
 
             st.title("")
             st.title("")
-            image1 = Image.open(r".\apps\eda_automation\images\histogram.png")
-            image2 = Image.open(r".\apps\eda_automation\images\correlation.png")
-            image3 = Image.open(r".\apps\eda_automation\images\voi.png")
+            image1 = Image.open(r"./apps/eda_automation/images/histogram.png")
+            image2 = Image.open(r"./apps/eda_automation/images/correlation.png")
+            image3 = Image.open(r"./apps/eda_automation/images/voi.png")
 
             # Add image with image desc
             with st.container():
