@@ -129,12 +129,12 @@ class BEApp(HydraHeadApp):
 
             """
             st.markdown(f"<p class='medium-font'>{text}", unsafe_allow_html=True)
-            catchment = gpd.read_parquet(r'./apps\business_expansion/data/catchment_mall.parquet')
+            catchment = gpd.read_parquet(r'./apps/business_expansion/data/catchment_mall.parquet')
             poi = gpd.read_parquet(r'./apps/business_expansion/data/point_mall.parquet')
 
             # Catchment data
             building_catch = pd.read_parquet(r'./apps/business_expansion/data/data_catchment/building_catchment.parquet')
-            poi_catch = pd.read_parquet(r'./apps/business_expansion/data\data_catchment/poi_catchment.parquet')
+            poi_catch = pd.read_parquet(r'./apps/business_expansion/data/data_catchment/poi_catchment.parquet')
             pop_catch = pd.read_parquet(r'./apps/business_expansion/data/data_catchment/pop_catchment.parquet')
             poi_category = get_data('POI in Hex')[0]
 
