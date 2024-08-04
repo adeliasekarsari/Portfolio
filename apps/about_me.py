@@ -26,7 +26,7 @@ class AboutMe(HydraHeadApp):
                 img = "data:image/png;base64," + base64.b64encode(img_file.read()).decode()
 
             # PDF CV file
-            with open("style/Data Analyst 2023 - Adelia Sekarsari.pdf", "rb") as pdf_file:
+            with open("style/Adelia_Sekarsari_Data_Scientist_2024.pdf", "rb") as pdf_file:
                 pdf_bytes = pdf_file.read()
 
 
