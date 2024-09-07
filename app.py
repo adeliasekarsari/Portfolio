@@ -23,6 +23,7 @@ if __name__ == '__main__':
     #add all your application classes here
     app.add_app("Exploratory Data Analytics",  app=apps.eda_automation.main.EdaApp(title="Exploratory Data Analytics"))
     app.add_app("Business Expansion Analytics", app=apps.business_expansion.main.BEApp(title="Business Expansion Analytics"))
+    app.add_app("Similarity Analytics", app=apps.similarity.main.SimilarityApp(title="Similarity Analytics"))
     app.add_app("Sentiment Analysis", app=apps.sentiment_analysis.main.SentimentApp(title="Sentiment Analysis"))
     app.add_app("Flood Analysis",  app=apps.flood_analysis.main.FloodApp(title="Flood Analysis"))
 
@@ -33,7 +34,7 @@ if __name__ == '__main__':
 
     complex_nav = {
             'Home': ['Home'],
-            'Study Cases': ['Exploratory Data Analytics','Business Expansion Analytics',"Sentiment Analysis","Flood Analysis"],
+            'Study Cases': ['Exploratory Data Analytics','Business Expansion Analytics','Similarity Analytics',"Sentiment Analysis","Flood Analysis"],
             'About Me': ['About Me']
         }
 
