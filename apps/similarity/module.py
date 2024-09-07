@@ -68,7 +68,7 @@ def remove_extra_whitespaces(text):
     return re.sub(r'\s+', ' ', text).strip()
 
 def remove_stopwords(text):
-    stop_words = set(stopwords.words('indonesian'))
+    stop_words = set(stopwords.words('english'))
     return ' '.join([word for word in text.split() if word not in stop_words])
 
 
