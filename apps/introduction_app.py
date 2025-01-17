@@ -35,7 +35,7 @@ class IntroductionApp(HydraHeadApp):
                 img = "data:image/png;base64," + base64.b64encode(img_file.read()).decode()
 
             # PDF CV file
-            with open("style//Data Science - Adelia Sekarsari.pdf", "rb") as pdf_file:
+            with open("style//Data Science - Adelia Sekarsari-2.pdf", "rb") as pdf_file:
                 pdf_bytes = pdf_file.read()
 
 
