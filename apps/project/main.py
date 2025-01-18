@@ -96,14 +96,15 @@ class ProjectApp(HydraHeadApp):
         Renders a single project card with an image and a header.
         """
         st.markdown(
-                f"""
-                <div class="card">
-                    <img src="{project['image_url']}" alt="{project['title']}">
-                    <h3>{project['title']}</h3>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+            f"""
+            <div class="card">
+                <img src="{project['image_url']}" alt="{project['title']}" style="width: auto; height: 200px;">
+                <h3>{project['title']}</h3>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             if st.button(f"View {project['title']}"):
