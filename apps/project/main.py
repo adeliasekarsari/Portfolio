@@ -2,6 +2,7 @@ import streamlit as st
 from hydralit import HydraHeadApp
 from apps.project.module.module import get_base64_image
 from apps.project.module.esteh import EstehApp 
+from apps.project.module.poi_matching import POIMatchingApp
 
 class ProjectApp(HydraHeadApp):
     def __init__(self, title='List of Projects', **kwargs):
@@ -16,6 +17,10 @@ class ProjectApp(HydraHeadApp):
             # Navigate to EstehApp
             esteh_app = EstehApp()
             esteh_app.run()
+        elif st.session_state.selected_project == "poi_matching":
+            # Navigate to EstehApp
+            poi_matching_app = POIMatchingApp()
+            poi_matching_app.run()
         else:
             # Render the project grid
             self.render_header()

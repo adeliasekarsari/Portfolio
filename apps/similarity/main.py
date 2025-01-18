@@ -12,6 +12,9 @@ class SimilarityApp(HydraHeadApp):
 
     def run(self):
         st.title('Similarity Analysis')
+        if st.button("Back to POI Matching Project Explanation"):
+            st.session_state["show_similarity_app"] = False  
+            return
 
         text = """
         In this project, I developed a similarity analysis model to identify
