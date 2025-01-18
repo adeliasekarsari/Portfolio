@@ -3,6 +3,7 @@ from hydralit import HydraHeadApp
 from apps.project.module.module import get_base64_image
 from apps.project.module.esteh import EstehApp 
 from apps.project.module.poi_matching import POIMatchingApp
+from apps.project.module.eda import EDAApps
 
 class ProjectApp(HydraHeadApp):
     def __init__(self, title='List of Projects', **kwargs):
@@ -14,13 +15,14 @@ class ProjectApp(HydraHeadApp):
             st.session_state.selected_project = None
 
         if st.session_state.selected_project == "esteh":
-            # Navigate to EstehApp
             esteh_app = EstehApp()
             esteh_app.run()
         elif st.session_state.selected_project == "poi_matching":
-            # Navigate to EstehApp
             poi_matching_app = POIMatchingApp()
             poi_matching_app.run()
+        elif st.session_state.selected_project == "eda":
+            eda_app = EDAApps()
+            eda_app.run()
         else:
             # Render the project grid
             self.render_header()

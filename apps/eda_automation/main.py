@@ -24,11 +24,9 @@ class EdaApp(HydraHeadApp):
         
     def run(self):
         with st.sidebar:
-            choose = option_menu("EDA Automation", ["Project Description",
-                                                    "Data Distribution",
-                                                    "Correlation Analysis",
-                                                    "Variable of Importance Analysis"],
-                                icons=['book','pin-map-fill','person lines fill','book'],
+            choose = option_menu("EDA Automation", ["Data Distribution",
+                                                    "Correlation Analysis"],
+                                icons=['person lines fill','book'],
                                 menu_icon="app-indicator", default_index=0,
                                 styles={
                 "container": {"padding": "5!important", "background-color": "black"},
@@ -39,83 +37,10 @@ class EdaApp(HydraHeadApp):
             
             )
         
-        if choose == "Project Description":
-            st.markdown("""
-            <style>
-            .big-font {
-                font-size:60px !important;
-            }
-            .medium-font {
-                font-family:sans-serif;
-                font-size:24px !important;
-                text-align: justify color:White;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-
-
-            # Title
-
-            st.markdown("<p class='big-font'>Explore Your Data! </p>", unsafe_allow_html=True)
-            
-
-            st.title("")
-            text = """
-            The EDA Wizard is your go-to solution for automated Exploratory Data Analysis. 
-            Quickly analyze datasets with built-in Correlation Analysis, Histogram Visualization, 
-            and Variable Importance Assessment. Uncover insights effortlessly, visualize data 
-            distributions, and identify influential variables. Simplify 
-            your data exploration with this intuitive dashboard.
-            """
-            st.markdown(f"<p class='medium-font'>{text}</p>", unsafe_allow_html=True)
-
-            st.title("")
-            st.title("")
-            image1 = Image.open(r"./apps/eda_automation/images/histogram.png")
-            image2 = Image.open(r"./apps/eda_automation/images/correlation.png")
-            image3 = Image.open(r"./apps/eda_automation/images/voi.png")
-
-            # Add image with image desc
-            with st.container():
-                coll1, coll2, coll3 = st.columns([0.25,0.25,0.25])
-                with coll1:
-                    col1, col2, col3 = st.columns([0.15,0.8,0.1])
-                    with col1:
-                        st.write('')
-
-                    with col2:
-                        st.image(image1, width = 450)
-                        
-
-                    with col3:
-                        st.write('')
-                    
-                    st.markdown('<p style="text-align: center;">Correlation Analysis</p>',unsafe_allow_html=True)
-                with coll2:
-                    col1, col2, col3 = st.columns([0.15,0.8,0.1])
-                    with col1:
-                        st.write('')
-
-                    with col2:
-                        st.image(image2, width = 450)
-                        
-
-                    with col3:
-                        st.write('')
-                    st.markdown('<p style="text-align: center;">Geospatial Information</p>',unsafe_allow_html=True)
-                with coll3:
-                    col1, col2, col3 = st.columns([0.15,0.8,0.1])
-                    with col1:
-                        st.write('')
-
-                    with col2:
-                        st.image(image3, width = 400)
-                        
-
-                    with col3:
-                        st.write('')
-                    st.markdown('<p style="text-align: center;">Variable of Importance</p>',unsafe_allow_html=True)
-        elif choose == "Data Distribution":
+        if choose == "Data Distribution":
+            if st.button("Back to EDA Project Explanation"):
+                st.session_state["show_eda_app"] = False  
+                return
             try:
                 # create container for input data
                 col1, col2 = st.columns([0.8, 0.2])
@@ -212,6 +137,9 @@ class EdaApp(HydraHeadApp):
                 st.text('No Input Data')
 
         elif choose == "Correlation Analysis":
+            if st.button("Back to EDA Project Explanation"):
+                st.session_state["show_eda_app"] = False  
+                return
             # Branch Selections
             method = st.sidebar.selectbox(
                 'Please Select Method',
@@ -288,103 +216,5 @@ class EdaApp(HydraHeadApp):
                         fig.update_layout(title = f'Correlation Analysis')
                         st.plotly_chart(fig, use_container_width=True)
 
-            except:
-                st.text('No Input Data')
-
-                
-
-        elif choose == "Variable of Importance Analysis":
-            # create container for input data
-            col1, col2 = st.columns([0.8, 0.2])
-
-            # Define format data
-            with col2:
-                type_data = st.selectbox('Data Format :',('.parquet','.xlsx','.csv','.geojson'))
-
-            # Read Data
-            with col1:
-                uploaded_files = st.file_uploader("", accept_multiple_files=True)
-                for uploaded_file in uploaded_files:
-                    bytes_data = uploaded_file.read()
-                    try:
-                        dataframe = read_module.read_data(uploaded_file, type_data)
-                        st.session_state['df'] = dataframe
-                    except:
-                        st.text("Can't read format data")
-
-            # Branch Selections
-            try:
-                # Heatmap Processing
-                # get numeric column
-                column_numeric = module_analyze.getNumeric(dataframe)[0]
-                df_numeric = dataframe[column_numeric]
-
-                # get unique values in column
-                column_unique = module_analyze.getObject(dataframe)
-
-                # create container
-                try:
-                    # get target col
-                    col_target = st.selectbox('Target :', tuple(column_numeric))
-                    # get col input
-                    column_non_target = []
-                    for i in column_numeric:
-                        if i not in col_target:
-                            column_non_target.append(i)
-                    col_input = st.multiselect("Attribute Column(s):",column_non_target)
-
-                    # define model
-                    model_type = st.selectbox('Model :', ('Linear Regression','Lasso Regression','RandomForest Regression',
-                                                    'Decision Tree Regression','XGBoost Regression'
-                                                    ))
-                    
-                    
-
-                    # Processing
-                    data = df_numeric[[col_target]+col_input].fillna(0)
-
-                    # define X and Y table
-                    X = module_analyze.normalize_target(data, col_input)
-                    y = data[col_target]
-
-                    if model_type == 'Linear Regression':
-                        model = LinearRegression()
-                        model.fit(X, y)
-                    
-                    elif model_type == 'Lasso Regression':
-                        model = linear_model.LassoLars(random_state=42)
-                        model.fit(X, y)
-                    
-                    elif model_type == 'RandomForest Regression':
-                        model = RandomForestRegressor(random_state=42)
-                        model.fit(X, y)
-                    
-                    elif model_type == 'Decision Tree Regression':
-                        model = DecisionTreeRegressor(random_state=42)
-                        model.fit(X, y)
-                    
-                    elif model_type == 'XGBoost Regression':
-                        model = XGBRegressor(random_state=42)
-                        model.fit(X, y)
-                except:
-                    404
-
-                if st.button('Generate VOI'):
-                    try:
-                        df_eval = pd.DataFrame({
-                            'RMSE':[module_analyze.evaluate(model, X,y)[0].round(3)],
-                            'R2':[module_analyze.evaluate(model, X,y)[1].round(3)]
-                        }).T
-                        df_eval.columns = ['error']
-                        df_voi = module_analyze.getCoefTable(model, model_type, X)
-                        col3, col4 = st.columns([0.3,0.7])
-                        with col3:
-                            st.dataframe(df_eval)
-                            st.dataframe(df_voi[['feature','score']])
-                        with col4:
-                            fig = visualization.voi_chart(df_voi)
-                            st.plotly_chart(fig, use_container_width=True)
-                    except:
-                        st.text('Failed build VOI')
             except:
                 st.text('No Input Data')
