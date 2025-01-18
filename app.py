@@ -36,8 +36,8 @@ if __name__ == "__main__":
         "Introduction": ["Introduction"],
         "Projects": ["Projects"],
         "HandOn": [
-            "Exploratory Data Analytics",
             "Similarity Analytics",
+            "Exploratory Data Analytics",
             "Business Expansion Analytics",
             "Sentiment Analysis"
         ]
