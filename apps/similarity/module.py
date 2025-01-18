@@ -1,31 +1,22 @@
-
-from transformers import BertTokenizer, BertModel
 import torch
 from fuzzywuzzy import fuzz
 from sklearn.metrics import jaccard_score
+from Levenshtein import distance as levenshtein_distance
+import joblib
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
-
+import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
 import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import pickle
 
-# Download necessary NLTK data
 nltk.download('stopwords')
 nltk.download('wordnet')
+model = pickle.load(open('apps/similarity/model_v1.pkl', 'rb'))
 
-# Load BERT model and tokenizer
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertModel.from_pretrained('bert-base-uncased')
-
-def get_bert_embedding(name):
-    inputs = tokenizer(name, return_tensors='pt', padding=True, truncation=True)
-    with torch.no_grad():
-        outputs = model(**inputs)
-    return outputs.last_hidden_state[:, 0, :]  # [CLS] token embedding
-
-def cosine_similarity(embedding1, embedding2):
-    return torch.nn.functional.cosine_similarity(embedding1, embedding2).item()
 
 def fuzzy_similarity(name1, name2):
     return fuzz.ratio(name1.lower(), name2.lower()) / 100.0
@@ -37,27 +28,15 @@ def jaccard_similarity(name1, name2):
     union = set1.union(set2)
     return len(intersection) / len(union)
 
-def combined_similarity(name1, name2, weights=None):
-    if weights is None:
-        weights = [0.4, 0.3, 0.3]  # Adjust these weights as needed
-    
-    # Get embeddings
-    embedding1 = get_bert_embedding(name1)
-    embedding2 = get_bert_embedding(name2)
-    
-    # Calculate individual similarities
-    cos_sim = cosine_similarity(embedding1, embedding2)
-    fuzzy_sim = fuzzy_similarity(name1, name2)
-    jac_sim = jaccard_similarity(name1, name2)
-    
-    # Combine similarities using the weights
-    combined_score = (
-        weights[0] * cos_sim +
-        weights[1] * fuzzy_sim +
-        weights[2] * jac_sim
-    )
-    
-    return combined_score
+def tfidf_similarity(text1, text2):
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform([text1, text2])
+    similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
+    return similarity[0][0]
+
+def levenshtein_similarity(text1, text2):
+    max_len = max(len(text1), len(text2))
+    return 1 - levenshtein_distance(text1, text2) / max_len
 
 
 def remove_special_characters(text):
@@ -86,4 +65,25 @@ def preprocess_text(text):
 
 def to_lowercase(text):
     return text.lower()
+
+def processing_similarity(text1, text2):
+    process_name1 = preprocess_text(text1)
+    process_name2 = preprocess_text(text2)
+
+    # Replace these with the actual similarity values calculated from the 4 methods
+    similarity_features = {
+        'fuzzy': fuzzy_similarity(process_name1, process_name2),
+        'jaccard': jaccard_similarity(process_name1, process_name2),
+        'tfidf_similarity': tfidf_similarity(process_name1, process_name2),
+        'levenshtein_similarity': levenshtein_similarity(process_name1, process_name2)
+    }
+
+    # Convert similarity features into a DataFrame (or a format compatible with your model)
+    input_data = pd.DataFrame([similarity_features])
+
+    # Step 3: Make a prediction
+    prediction = model.predict(input_data)
+    return prediction, similarity_features
+
+
 

@@ -1,7 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from hydralit import HydraHeadApp
-from apps.similarity.module import preprocess_text, combined_similarity
+import pandas as pd
+from apps.similarity.module import preprocess_text, processing_similarity
 
 class SimilarityApp(HydraHeadApp):
 
@@ -46,17 +47,23 @@ class SimilarityApp(HydraHeadApp):
             st.markdown(f'<p class="medium-font">Sentence 2</p>', unsafe_allow_html=True)
             s2 = st.text_area("Enter your text below: ", height=200)
 
-        # Check if both sentences are provided
         if s1 and s2:
             if st.button('Generate Similarity'):
-                # Preprocess the sentences
-                processed_s1 = preprocess_text(s1)
-                processed_s2 = preprocess_text(s2)
+                similarity_class, similarity_score = processing_similarity(s1, s2)
+                if similarity_class[0] == 1:
+                    status = "Similar"
+                else:
+                    status = "Non - Similar"
 
-                # Calculate similarity
-                similarity_score = combined_similarity(processed_s1, processed_s2)
+                formatted_scores = {
+                    'Fuzzy': similarity_score['fuzzy'],
+                    'Jaccard': similarity_score['jaccard'],
+                    'TF-IDF Similarity': similarity_score['tfidf_similarity'],
+                    'Levenshtein Similarity': similarity_score['levenshtein_similarity']
+                }
 
-                # Display the result
-                st.success(f'The similarity score between the two sentences is: {similarity_score:.2f}')
+                st.success(f'The two sentences is: {status}')
+                similarity_df = pd.DataFrame(formatted_scores.items(), columns=["Method", "Score"])
+                st.table(similarity_df)
         else:
             st.warning('Please enter text in both Sentence 1 and Sentence 2.')
