@@ -7,3 +7,4 @@ from apps.sentiment_analysis.main import SentimentApp
 from apps.business_expansion.main import BEApp
 from apps.similarity.main import SimilarityApp
 from apps.project.main import ProjectApp
+from apps.modelBuilding.main import ModelBuildingApp

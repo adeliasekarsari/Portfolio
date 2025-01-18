@@ -1,3 +1,4 @@
+import apps.modelBuilding
 from hydralit import HydraApp
 import apps
 import streamlit as st
@@ -29,6 +30,7 @@ if __name__ == "__main__":
     app.add_app("Business Expansion Analytics", app=apps.business_expansion.main.BEApp(title="Business Expansion Analytics"))
     app.add_app("Similarity Analytics", app=apps.similarity.main.SimilarityApp(title="Similarity Analytics"))
     app.add_app("Sentiment Analysis", app=apps.sentiment_analysis.main.SentimentApp(title="Sentiment Analysis"))
+    app.add_app("Machine Learning Automation", app=apps.modelBuilding.main.ModelBuildingApp(title="Machine Learning Automation"))
 
     # Define complex navigation
     complex_nav = {
@@ -38,6 +40,7 @@ if __name__ == "__main__":
         "HandOn": [
             "Similarity Analytics",
             "Exploratory Data Analytics",
+            "Machine Learning Automation",
             "Business Expansion Analytics",
             "Sentiment Analysis"
         ]
