@@ -1,0 +1,33 @@
+{
+"type": "FeatureCollection",
+"name": "distance_Tamini Square",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "kode_kecamatan": "317410" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.758677015603638, -6.25039216907599 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327508" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.930147420485625, -6.268862717599948 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327509" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.952265701450301, -6.307276929990128 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317202" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.874957586328335, -6.132045117762945 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317108" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.854588767282678, -6.18211460043706 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "320107" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.996224098693432, -6.409405701832183 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "352601" }, "geometry": { "type": "LineString", "coordinates": [ [ 112.739758950676105, -7.029424578058265 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317407" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.801443762496646, -6.244729428182397 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317408" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.843627834185455, -6.255339746155904 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317505" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.857257380152404, -6.326408936525604 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317508" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.891109534543119, -6.266309909004466 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317509" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.878397250602333, -6.333897144253575 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327105" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.819610475992803, -6.570804586932997 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327106" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.785449491540248, -6.546832156638988 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317206" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.903690105447666, -6.161039527948707 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327607" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.802829613828692, -6.429702285808455 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317502" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.88900705594051, -6.193196166314874 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317503" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.877426131944517, -6.227307682522528 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327512" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.928428953053398, -6.311285814760283 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327602" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.869392455221188, -6.367712912018638 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "321606" }, "geometry": { "type": "LineString", "coordinates": [ [ 107.054345428636736, -6.256887337115319 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "327510" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.924538095462083, -6.366572187366766 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "367404" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.7274145560649, -6.308105495303999 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317504" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.865440562363716, -6.276304570122901 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317205" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.838056615330601, -6.130016736525778 ], [ 106.882835663852461, -6.290390776334402 ] ] } },
+{ "type": "Feature", "properties": { "kode_kecamatan": "317510" }, "geometry": { "type": "LineString", "coordinates": [ [ 106.90355991144952, -6.325318518540808 ], [ 106.882835663852461, -6.290390776334402 ] ] } }
+]
+}
