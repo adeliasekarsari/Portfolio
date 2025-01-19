@@ -27,7 +27,6 @@ if __name__ == "__main__":
     app.add_app("Projects", app=apps.project.main.ProjectApp(title="Project List"))
     app.add_app("Introduction", app=apps.introduction_app.IntroductionApp(title="Introduction"))
     app.add_app("Exploratory Data Analytics", app=apps.eda_automation.main.EdaApp(title="Exploratory Data Analytics"))
-    app.add_app("Business Expansion Analytics", app=apps.business_expansion.main.BEApp(title="Business Expansion Analytics"))
     app.add_app("Similarity Analytics", app=apps.similarity.main.SimilarityApp(title="Similarity Analytics"))
     app.add_app("Sentiment Analysis", app=apps.sentiment_analysis.main.SentimentApp(title="Sentiment Analysis"))
     app.add_app("Machine Learning Automation", app=apps.modelBuilding.main.ModelBuildingApp(title="Machine Learning Automation"))
@@ -41,7 +40,6 @@ if __name__ == "__main__":
             "Similarity Analytics",
             "Exploratory Data Analytics",
             "Machine Learning Automation",
-            "Business Expansion Analytics",
             "Sentiment Analysis"
         ]
     }

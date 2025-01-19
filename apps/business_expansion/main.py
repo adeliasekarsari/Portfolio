@@ -35,6 +35,9 @@ class BEApp(HydraHeadApp):
             
             )
         if choose == "Project Description":
+            if st.button("Back to Projects"):
+                # Set session state to navigate back to the project app
+                st.session_state.selected_project = None
             st.markdown("""
             <style>
             .big-font {
@@ -486,40 +489,41 @@ class BEApp(HydraHeadApp):
                         col11, col12, col13, col14 = st.columns([0.5,0.5,0.5,0.5])
                         with col11:
                             st.markdown(f"<p class='medium1-font'>Avg. Population</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe['population_index'].mean())}</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p class='small-font'>{round(dataframe['population_index'].fillna(0).mean())}</p>", unsafe_allow_html=True)
                         with col12:
                             st.markdown(f"<p class='medium1-font'>Avg. Density</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe['density_index'].mean())}</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p class='small-font'>{round(dataframe['density_index'].fillna(0).mean())}</p>", unsafe_allow_html=True)
                         with col13:
                             st.markdown(f"<p class='medium1-font'>Avg. Building</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe['total building'].mean())}</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p class='small-font'>{round(dataframe['total building'].fillna(0).mean())}</p>", unsafe_allow_html=True)
                         with col14:
                             st.markdown(f"<p class='medium1-font'>Avg. POI</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe['total poi'].mean())}</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p class='small-font'>{round(dataframe['total poi'].fillna(0).mean())}</p>", unsafe_allow_html=True)
                         st.dataframe(dataframe, width=1500, height=200)
                     else:
-                        geo_scoring[geo_scoring['Class']==grid_select].boundary.explore(m=m,
-                                                                               color = 'red'
-                                                                               )
+                        plot_geo = geo_scoring[geo_scoring['Class']==grid_select]
+                        if plot_geo.shape[0]>0:
+                            plot_geo.boundary.explore(m=m,color = 'red')
                         st_data = st_folium(m, 
                                 width = 1800,
                                 height =600
                                 )
                         dataframe1 = dataframe[dataframe['Class']==grid_select]
-                        col11, col12, col13, col14 = st.columns([0.5,0.5,0.5,0.5])
-                        with col11:
-                            st.markdown(f"<p class='medium1-font'>Avg. Population</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe1['population_index'].mean())}</p>", unsafe_allow_html=True)
-                        with col12:
-                            st.markdown(f"<p class='medium1-font'>Avg. Density</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe1['density_index'].mean())}</p>", unsafe_allow_html=True)
-                        with col13:
-                            st.markdown(f"<p class='medium1-font'>Avg. Building</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe1['total building'].mean())}</p>", unsafe_allow_html=True)
-                        with col14:
-                            st.markdown(f"<p class='medium1-font'>Avg. POI</p>", unsafe_allow_html=True)
-                            st.markdown(f"<p class='small-font'>{round(dataframe1['total poi'].mean())}</p>", unsafe_allow_html=True)
-                        st.dataframe(dataframe[dataframe['Class']==grid_select], width=1500, height=200)
+                        if dataframe1.shape[0]>0:
+                            col11, col12, col13, col14 = st.columns([0.5,0.5,0.5,0.5])
+                            with col11:
+                                st.markdown(f"<p class='medium1-font'>Avg. Population</p>", unsafe_allow_html=True)
+                                st.markdown(f"<p class='small-font'>{round(dataframe1['population_index'].fillna(0).mean())}</p>", unsafe_allow_html=True)
+                            with col12:
+                                st.markdown(f"<p class='medium1-font'>Avg. Density</p>", unsafe_allow_html=True)
+                                st.markdown(f"<p class='small-font'>{round(dataframe1['density_index'].fillna(0).mean())}</p>", unsafe_allow_html=True)
+                            with col13:
+                                st.markdown(f"<p class='medium1-font'>Avg. Building</p>", unsafe_allow_html=True)
+                                st.markdown(f"<p class='small-font'>{round(dataframe1['total building'].fillna(0).mean())}</p>", unsafe_allow_html=True)
+                            with col14:
+                                st.markdown(f"<p class='medium1-font'>Avg. POI</p>", unsafe_allow_html=True)
+                                st.markdown(f"<p class='small-font'>{round(dataframe1['total poi'].fillna(0).mean())}</p>", unsafe_allow_html=True)
+                            st.dataframe(dataframe[dataframe['Class']==grid_select], width=1500, height=200)
 
 
                     

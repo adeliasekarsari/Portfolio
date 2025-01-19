@@ -4,6 +4,7 @@ from apps.project.module.module import get_base64_image
 from apps.project.module.esteh import EstehApp 
 from apps.project.module.poi_matching import POIMatchingApp
 from apps.project.module.eda import EDAApps
+from apps.business_expansion.main import BEApp
 
 class ProjectApp(HydraHeadApp):
     def __init__(self, title='List of Projects', **kwargs):
@@ -23,6 +24,9 @@ class ProjectApp(HydraHeadApp):
         elif st.session_state.selected_project == "eda":
             eda_app = EDAApps()
             eda_app.run()
+        elif st.session_state.selected_project == "huff":
+            huff_app = BEApp()
+            huff_app.run()
         else:
             # Render the project grid
             self.render_header()
