@@ -27,6 +27,8 @@ class ModelBuildingApp(HydraHeadApp):
             )
         
         if choose == "Model Automated":
+            if st.button("Back to AutoML Project Explanation"):
+                st.session_state["show_automl_app"] = False  
             modelBuilding()
         else:
             HyperparameterTuning()
