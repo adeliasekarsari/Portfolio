@@ -86,11 +86,11 @@ class ProjectApp(HydraHeadApp):
             unsafe_allow_html=True
         )
         title_dict = {
-            "esteh": "Predict Revenue ESTEH Indonesia",
+            "esteh": "Predict Revenue",
             "poi_matching": "POI Matching - NLP",
             "eda": "Exploratory Data Analysis",
             "automl": "Machine Learning Automation",
-            "lippo": "Telco Location - Lippo",
+            "lippo": "Telco Location",
             "huff": "Huff Demand Analysis",
             "demand": "Demand"
         }

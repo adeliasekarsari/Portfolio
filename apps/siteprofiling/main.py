@@ -23,6 +23,9 @@ class LippoApp(HydraHeadApp):
         self.title = title
         
     def run(self):
+        if st.button("Back to Projects"):
+                # Set session state to navigate back to the project app
+                st.session_state.selected_project = None
         loc_url = 'apps/siteprofiling/data/data_tematic'
         loc_url2 = 'apps/siteprofiling/data/data_mw'
 
@@ -47,7 +50,7 @@ class LippoApp(HydraHeadApp):
         gdf['lon'] = gdf.centroid.geometry.x
 
         with st.sidebar:
-            choose = option_menu("Lippo Mall", ["Site Profiling", "Mobility Analysis"],
+            choose = option_menu("Site Profiling", ["Site Profiling", "Mobility Analysis"],
                                 icons=['book','pin-map-fill','person lines fill'],
                                 menu_icon="app-indicator", default_index=0,
                                 styles={
