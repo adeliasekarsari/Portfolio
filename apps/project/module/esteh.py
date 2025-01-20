@@ -119,14 +119,14 @@ class EstehApp(HydraHeadApp):
                             This analysis helps to identify location patterns based on spatial characteristics. 
                             By leveraging these insights, clients can predict outlet performance and make 
                             informed decisions for business expansion in areas with similar spatial attributes""")
-                col3, col4, col5 = st.columns([1,1,1.5])
+                col3, col4 = st.columns([1,1])
                 with col3:
                     cluster2 = get_base64_image(f"apps/project/style/esteh/clusterinf_c1.png")
                     st.markdown(
                             f"""
                             <div style="text-align: center;">
                                 <div class="card">
-                                    <img src="{cluster2}" style="width: 100%; height: auto;" alt="Project Image">
+                                    <img src="{cluster2}" style="width: 80%; height: auto;" alt="Project Image">
                                 </div>
                             </div>
                             """,
@@ -139,21 +139,20 @@ class EstehApp(HydraHeadApp):
                             f"""
                             <div style="text-align: center;">
                                 <div class="card">
-                                    <img src="{cluster3}" style="width: 80%; height: auto;" alt="Project Image">
+                                    <img src="{cluster3}" style="width: 60%; height: auto;" alt="Project Image">
                                 </div>
                             </div>
                             """,
                             
                             unsafe_allow_html=True
                         )
-                with col5:
-                    st.markdown("""
-                            The Bar Chart shows the total number of outlets in each cluster, helping to visualize the distribution of outlets across different clusters. 
-                                It provides insights into which clusters have more or fewer outlets, highlighting areas with stronger or weaker market presence. 
-                                The Spider Chart displays 9 key components that define each cluster, including average population aged 15-54 years, mobile density, 
-                                total competitors, and various Points of Interest (POI) such as food services, education, office services, and government services. 
-                                It also includes the average percentage of high SES and medium-low SES in each cluster. These attributes allow for a clear comparison 
-                                of the different clusters, helping stakeholders understand their defining characteristics and make informed strategic decisions.""")
+            st.markdown("""
+                    The Bar Chart shows the total number of outlets in each cluster, helping to visualize the distribution of outlets across different clusters. 
+                        It provides insights into which clusters have more or fewer outlets, highlighting areas with stronger or weaker market presence. 
+                        The Spider Chart displays 9 key components that define each cluster, including average population aged 15-54 years, mobile density, 
+                        total competitors, and various Points of Interest (POI) such as food services, education, office services, and government services. 
+                        It also includes the average percentage of high SES and medium-low SES in each cluster. These attributes allow for a clear comparison 
+                        of the different clusters, helping stakeholders understand their defining characteristics and make informed strategic decisions.""")
 
             
 
